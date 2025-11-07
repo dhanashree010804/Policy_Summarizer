@@ -7,7 +7,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from io import BytesIO
 from dotenv import load_dotenv
 import os
+import spacy
+import subprocess
 
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 # Optional: load .env if you use keys later
 load_dotenv()
 
